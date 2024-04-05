@@ -124,7 +124,7 @@ console.log(
  * @returns {number} result
  */
 function getRandomValue(max) {
-  return Math.random() * max;
+  return Math.floor (Math.random() * (max + 1));
 }
 console.log(getRandomValue(10));
 console.log(getRandomValue(100));
@@ -134,6 +134,11 @@ console.log(getRandomValue(100));
 console.log(
   "8/ Implémentez une fonction qui retourne la moyenne des valeurs d'un tableau."
 );
+/**
+ * calculate average array sum
+ * @param {number} array 
+ * @returns {number} result
+ */
 function totalAverageBoard(array) {
   let sum = 0;
 
@@ -196,14 +201,24 @@ console.log(
   "11/ Implémentez une fonction qui retourne la clé d'un objet pour la valeur maximale ."
 );
 
-
+/**
+ * get the object key with max value
+ * @param {string} object 
+ * @returns {string} key with the max value
+ */
 function getMaxKeyValue(object) {
-    
+    let ojectValueMax = Math.max(...Object.values(object));
+    for (let key in object){
+if (object.hasOwnProperty(key) && object[key] === ojectValueMax){
+    return key;
+}
+    }
     
 }
-const objectValues = { pierre: 22, jeanne: 36, aïda: 42, esmée: 53 };
+let objectValues = { pierre: 22, jeanne: 36, aïda: 42, esmée: 53 };
+let maxKey = getMaxKeyValue(objectValues);
 
-console.log();
+console.log(maxKey);
 console.log();
 
 /* ------------------------------------------------------*/
