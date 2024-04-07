@@ -120,11 +120,11 @@ console.log(
 );
 /**
  * get random value from a number range
- * @param {number} max 
+ * @param {number} max
  * @returns {number} result
  */
 function getRandomValue(max) {
-  return Math.floor (Math.random() * (max + 1));
+  return Math.floor(Math.random() * (max + 1));
 }
 console.log(getRandomValue(10));
 console.log(getRandomValue(100));
@@ -136,7 +136,7 @@ console.log(
 );
 /**
  * calculate average array sum
- * @param {number} array 
+ * @param {number} array
  * @returns {number} result
  */
 function totalAverageBoard(array) {
@@ -203,17 +203,16 @@ console.log(
 
 /**
  * get the object key with max value
- * @param {string} object 
+ * @param {string} object
  * @returns {string} key with the max value
  */
 function getMaxKeyValue(object) {
-    let ojectValueMax = Math.max(...Object.values(object));
-    for (let key in object){
-if (object.hasOwnProperty(key) && object[key] === ojectValueMax){
-    return key;
-}
+  let ojectValueMax = Math.max(...Object.values(object));
+  for (let key in object) {
+    if (object.hasOwnProperty(key) && object[key] === ojectValueMax) {
+      return key;
     }
-    
+  }
 }
 let objectValues = { pierre: 22, jeanne: 36, aïda: 42, esmée: 53 };
 let maxKey = getMaxKeyValue(objectValues);
@@ -227,14 +226,50 @@ console.log(
   "12/ Implémentez une fonction qui retourne une valeur aléatoire dans un tableau."
 );
 
-console.log();
-console.log();
+
+/**
+ * Get a random value from an array
+ * @param {number} board 
+ * @returns {number} random value from array
+ */
+function boardRandomValue(board) {
+  if (board.length === 0) {
+    return undefined;
+  }
+  const randomIndex = Math.floor(Math.random() * board.length);
+  return board[randomIndex];
+}
+const randomBoard = [1, 2, 3, 4, 5];
+const value = boardRandomValue(randomBoard);
+console.log("valeur aléatoire dans le tableau:", value);
 
 /* ------------------------------------------------------*/
 
 console.log(
   "13/ Implémentez une fonction qui retourne le nombre de mots dans un texte."
 );
+/**
+ * Get number of words in a sentence
+ * @param {string} text 
+ * @returns {string} number of words in the sentence
+ */
+function numberOfWords(text) {
+  
+  const textWithoutPunctuation = text.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '');
 
-console.log();
-console.log();
+  
+  const words = textWithoutPunctuation.split(/\s+/);
+
+  
+  return words.length;
+}
+
+
+const text = "Ceci est un exemple de text. Il contient plusieurs words.";
+const numberOfWordsInText =numberOfWords(text);
+console.log("Nombre de words dans le text:",numberOfWordsInText);
+
+
+
+
+
