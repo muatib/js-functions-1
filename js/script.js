@@ -270,6 +270,40 @@ const numberOfWordsInText =numberOfWords(text);
 console.log("Nombre de words dans le text:",numberOfWordsInText);
 
 
+//OU
 
+
+function numberOfWords(text) {
+  let numberOfWords = 0;
+  let inWord = false;
+
+ 
+  for (let i = 0; i < text.length; i++) {
+    const caractere = text[i];
+
+    
+    if ((caractere >= 'a' && caractere <= 'z') || (caractere >= 'A' && caractere <= 'Z') || (caractere >= '0' && caractere <= '9') || caractere === "'") {
+      inWord = true;
+    } else {
+      
+      if (inWord) {
+        numberOfWords++;
+        inWord = false;
+      }
+    }
+  }
+
+
+  if (inWord) {
+    numberOfWords++;
+  }
+
+  return numberOfWords;
+}
+
+
+const sentence = "Ceci est un exemple de texte. Il contient plusieurs mots.";
+const numbnerOfWordsInText = numberOfWords(sentence);
+console.log("Nombre de mots dans le texte:", numberOfWordsInText);
 
 
