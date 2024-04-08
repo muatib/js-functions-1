@@ -118,6 +118,7 @@ console.log(getArraySum(arrayOne));
 console.log(
   "7/ Implémentez une fonction qui retourne une valeur aléatoire entre 0 et un nombre."
 );
+
 /**
  * get random value from a number range
  * @param {number} max
@@ -159,41 +160,56 @@ console.log(
   "9/ Implémentez une fonction qui retourne une durée en heures et minutes depuis une durée en minutes."
 );
 /**
- * covert time to minutes
+ * convert time to minutes
  * @param {number} minute
- * @returns {number} result
+ * @returns {number} time in minutes
  */
 function convertTime(minute) {
   const hours = Math.floor(minute / 60);
 
-  const minutesLeft = minute % 60;
+  minute %= 60;
 
-  return `${hours} heures et ${minutesLeft} minutes`;
+  return `${hours} heures et ${minute} minutes`;
 }
 
-const durationInMinute = 150;
-console.log(convertTime(durationInMinute));
+// const durationInMinute = 150;
+console.log(convertTime(180));
+console.log(convertTime(240));
 
+
+//function convertTime (minutes){
+//   return {
+//     hours: Math.florr(minute / 60),
+//     minute: minute % 60
+//   };
+// }
 /* ------------------------------------------------------*/
 
 console.log(
   "10/ Implémentez une fonction qui retourne la valeur minimale d'un tableau."
 );
+/**
+ * Get min value form an array
+ * @param {number} array
+ * @returns {number} min value of the array
+ */
+function getMinValue(array) {
+  // let arrayMin = array[0];
 
-function GetMinValue(array) {
-  let arrayMin = array[0];
+  // for (let i = 0; i < array.length; i++) {
+  //   if (array[i] < arrayMin) {
+  //     arrayMin = array[i];
+  //   }
+  // }
 
-  for (let i = 1; i < array.length; i++) {
-    if (array[i] < arrayMin) {
-      arrayMin = array[i];
-    }
-  }
-
-  return arrayMin;
+  return Math.min(...array);
 }
 
-const boardMin = [78, 56, 26, 84, 74];
-console.log("La valeur minimale du tableau est :", GetMinValue(boardMin));
+// const boardMin = [78, 56, 26, 84, 74];
+console.log(
+  "La valeur minimale du tableau est :",
+  getMinValue([78, 56, 26, 84, 74])
+);
 
 /* ------------------------------------------------------*/
 
@@ -214,11 +230,10 @@ function getMaxKeyValue(object) {
     }
   }
 }
-let objectValues = { pierre: 22, jeanne: 36, aïda: 42, esmée: 53 };
-let maxKey = getMaxKeyValue(objectValues);
+// let objectValues = { pierre: 22, jeanne: 36, aïda: 42, esmée: 53 };
+let maxKey = getMaxKeyValue({ pierre: 22, jeanne: 36, aïda: 42, esmée: 53 });
 
 console.log(maxKey);
-console.log();
 
 /* ------------------------------------------------------*/
 
@@ -226,21 +241,17 @@ console.log(
   "12/ Implémentez une fonction qui retourne une valeur aléatoire dans un tableau."
 );
 
-
 /**
  * Get a random value from an array
- * @param {number} board 
+ * @param {array} board
  * @returns {number} random value from array
  */
 function boardRandomValue(board) {
-  if (board.length === 0) {
-    return undefined;
-  }
-  const randomIndex = Math.floor(Math.random() * board.length);
+  const randomIndex = getRandomValue(board.length -1);
   return board[randomIndex];
 }
-const randomBoard = [1, 2, 3, 4, 5];
-const value = boardRandomValue(randomBoard);
+
+const value = boardRandomValue([1, 2, 3, 4, 5]);
 console.log("valeur aléatoire dans le tableau:", value);
 
 /* ------------------------------------------------------*/
@@ -249,50 +260,48 @@ console.log(
   "13/ Implémentez une fonction qui retourne le nombre de mots dans un texte."
 );
 /**
- * Get number of words in a sentence
- * @param {string} text 
- * @returns {string} number of words in the sentence
+ *  number of words in a sentence
+ * @param {string} text
+ * @returns {number} number of words in the sentence
  */
-function numberOfWords(text) {
-  
-  const textWithoutPunctuation = text.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '');
+function CountnumberOfWords(text) {
+  const textWithoutPunctuation = text.replace(
+    /[.,\/#!$%\^&\*;:{}=\-_`~()]/g,
+    ""
+  );
 
-  
   const words = textWithoutPunctuation.split(/\s+/);
 
-  
   return words.length;
 }
 
-
 const text = "Ceci est un exemple de text. Il contient plusieurs words.";
-const numberOfWordsInText =numberOfWords(text);
-console.log("Nombre de words dans le text:",numberOfWordsInText);
-
+const numberOfWordsInText = CountnumberOfWords(text);
+console.log("Nombre de words dans le text:", numberOfWordsInText);
 
 //OU
-
 
 function numberOfWords(text) {
   let numberOfWords = 0;
   let inWord = false;
 
- 
   for (let i = 0; i < text.length; i++) {
     const caractere = text[i];
 
-    
-    if ((caractere >= 'a' && caractere <= 'z') || (caractere >= 'A' && caractere <= 'Z') || (caractere >= '0' && caractere <= '9') || caractere === "'") {
+    if (
+      (caractere >= "a" && caractere <= "z") ||
+      (caractere >= "A" && caractere <= "Z") ||
+      (caractere >= "0" && caractere <= "9") ||
+      caractere === "'"
+    ) {
       inWord = true;
     } else {
-      
       if (inWord) {
         numberOfWords++;
         inWord = false;
       }
     }
   }
-
 
   if (inWord) {
     numberOfWords++;
@@ -301,9 +310,6 @@ function numberOfWords(text) {
   return numberOfWords;
 }
 
-
 const sentence = "Ceci est un exemple de texte. Il contient plusieurs mots.";
 const numbnerOfWordsInText = numberOfWords(sentence);
 console.log("Nombre de mots dans le texte:", numberOfWordsInText);
-
-
